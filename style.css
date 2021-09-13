@@ -1,0 +1,49 @@
+:root {
+  --bg-dm: #0e151b;
+  --fg-dm: #efefef;
+
+  --bg-lm: #efefef;
+  --fg-lm: #0e151b;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--bg-dm);
+  overflow: hidden;
+  margin: 0;
+}
+
+.ta {
+  width: 70%;
+  height: 90%;
+  font-family: Consolas;
+  background-color: var(--bg-dm);
+  color: var(--fg-dm);
+  border: none;
+  font-size: 25px;
+  outline: none;
+  margin: 50px auto;
+  display: block;
+  resize: none;
+}
+
+.dm {
+  color: var(--fg-dm);
+  background-color: var(--bg-dm);
+}
+
+.lm {
+  color: var(--fg-lm);
+  background-color: var(--bg-lm);
+}
+
+.btn-light-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+
+  border: 0;
+  background: none;
+  font-size: 15px;
+}

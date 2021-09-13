@@ -4,49 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%2280%22>📄</text></svg>"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css"
-    />
+
+    <link rel="stylesheet" href="style.css" />
+
     <title>Text</title>
-
-    <style>
-      :root {
-        --bg: #202124;
-        --font: #ebebeb;
-      }
-
-      html,
-      body {
-        height: 100%;
-        background-color: var(--bg);
-        overflow: hidden;
-      }
-
-      .ta {
-        width: 70%;
-        height: 90%;
-        font-family: "Computer Modern Sans", sans-serif;
-        background-color: var(--bg);
-        color: var(--font);
-        border: none;
-        font-size: 30px;
-        outline: none;
-        margin: 50px auto;
-        display: block;
-        resize: none;
-      }
-    </style>
   </head>
   <body>
     <textarea class="ta"></textarea>
 
+    <button class="btn-light-toggle">🌞</button>
+
     <script>
+      let lightIsOn = false;
+
       const ta = document.querySelector(".ta");
       ta.focus();
 
@@ -59,6 +29,33 @@
             this.value.substring(0, start) + "\t" + this.value.substring(end);
           this.selectionStart = this.selectionEnd = start + 1;
         }
+      });
+
+      const btnLightToggle = document.querySelector(".btn-light-toggle");
+      btnLightToggle.addEventListener("click", () => {
+        if (lightIsOn) {
+          // Make it dark.
+          document.body.classList.remove("lm");
+          document.body.classList.add("dm");
+
+          ta.classList.remove("lm");
+          ta.classList.add("dm");
+
+          btnLightToggle.textContent = "🌞";
+        } else {
+          // Make it bright.
+          document.body.classList.remove("dm");
+          document.body.classList.add("lm");
+
+          ta.classList.remove("dm");
+          ta.classList.add("lm");
+
+          btnLightToggle.textContent = "🌑";
+        }
+
+        ta.focus();
+
+        lightIsOn = !lightIsOn;
       });
     </script>
   </body>
