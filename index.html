@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"
+    />
+    <title>Text document</title>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        background-color: #202124;
+        overflow: hidden;
+      }
+
+      body {
+        height: 100%;
+      }
+
+      .ta {
+        width: 70%;
+        height: 90%;
+        background-color: rgb(32, 33, 36);
+        font-family: "Computer Modern Sans";
+        color: rgb(235, 235, 235);
+        border: none;
+        font-size: 28px;
+        outline: none;
+        margin: 50px auto;
+        display: block;
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea class="ta"></textarea>
+
+    <script>
+      const ta = document.querySelector(".ta");
+      ta.focus();
+
+      ta.addEventListener("keydown", function (e) {
+        if (e.key == "Tab") {
+          e.preventDefault();
+          const start = this.selectionStart;
+          const end = this.selectionEnd;
+          this.value =
+            this.value.substring(0, start) + "\t" + this.value.substring(end);
+          this.selectionStart = this.selectionEnd = start + 1;
+        }
+      });
+    </script>
+  </body>
+</html>
