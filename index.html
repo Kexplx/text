@@ -10,52 +10,21 @@
     <title>Text</title>
   </head>
   <body>
-    <textarea class="ta"></textarea>
-
-    <button class="btn-light-toggle">🌞</button>
+    <button id="btnDiscoverDevices">Discover Devices</button>
 
     <script>
-      let lightIsOn = false;
-
-      const ta = document.querySelector(".ta");
-      ta.focus();
-
-      ta.addEventListener("keydown", function (e) {
-        if (e.key == "Tab") {
-          e.preventDefault();
-          const start = this.selectionStart;
-          const end = this.selectionEnd;
-          this.value =
-            this.value.substring(0, start) + "\t" + this.value.substring(end);
-          this.selectionStart = this.selectionEnd = start + 1;
-        }
-      });
-
-      const btnLightToggle = document.querySelector(".btn-light-toggle");
-      btnLightToggle.addEventListener("click", () => {
-        if (lightIsOn) {
-          // Make it dark.
-          document.body.classList.remove("lm");
-          document.body.classList.add("dm");
-
-          ta.classList.remove("lm");
-          ta.classList.add("dm");
-
-          btnLightToggle.textContent = "🌞";
-        } else {
-          // Make it bright.
-          document.body.classList.remove("dm");
-          document.body.classList.add("lm");
-
-          ta.classList.remove("dm");
-          ta.classList.add("lm");
-
-          btnLightToggle.textContent = "🌑";
-        }
-
-        ta.focus();
-
-        lightIsOn = !lightIsOn;
+      const btnDiscover = document.getElementById("btnDiscoverDevices");
+      btnDiscover.addEventListener("click", () => {
+        navigator.bluetooth
+          .requestDevice({
+            acceptAllDevices: true,
+          })
+          .then((device) => {
+            console.log("yo");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       });
     </script>
   </body>
