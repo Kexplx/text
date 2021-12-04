@@ -10,22 +10,21 @@
     <title>Text</title>
   </head>
   <body>
-    <button id="btnDiscoverDevices">Discover Devices</button>
+    <button id="btnShare">Share</button>
 
     <script>
-      const btnDiscover = document.getElementById("btnDiscoverDevices");
-      btnDiscover.addEventListener("click", () => {
-        navigator.bluetooth
-          .requestDevice({
-            acceptAllDevices: true,
-          })
-          .then((device) => {
-            console.log("yo");
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      });
+      onShare() {
+        const shareData = {
+          title: 'COVID App',
+          text: 'COVID-19 Kennzahlen für Deutschland und Bayern im Überblick',
+          url: 'https://kexplx.github.io/covid',
+        };
+
+        navigator.share(shareData);
+      }
+      
+      const btn = document.getElementById('#btnShare');
+      btn.addEventListener('click', () => onShare());
     </script>
   </body>
 </html>
