@@ -1,0 +1,48 @@
+:root {
+  --bg-dm: #0e151b;
+  --fg-dm: #efefef;
+
+  --bg-lm: #efefef;
+  --fg-lm: #0e151b;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--bg-dm);
+  overflow: hidden;
+  margin: 0;
+  font-family: Consolas;
+  font-size: 20px;
+}
+
+.ta {
+  width: 50%;
+  font-size: 20px;
+  height: 90%;
+  background-color: var(--bg-dm);
+  color: var(--fg-dm);
+  border: none;
+  outline: none;
+  margin: 50px auto;
+  display: block;
+  resize: none;
+}
+
+.console-output-container {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  width: 400px;
+}
+
+.console-output-container__time {
+  margin: 0;
+  color: rgb(210, 210, 210);
+  font-size: 15px;
+}
+
+.console-output-container__log {
+  margin-top: 0;
+  color: white;
+}

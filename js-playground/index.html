@@ -1,12 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    js-playground
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Simple JavaScript playground." />
+    <link
+      rel="shortcut icon"
+      href="icons/Unofficial_JavaScript_logo_2.svg"
+      type="image/svg"
+    />
+    <title>JS Playground</title>
+    <link rel="stylesheet" href="style.css">
+  </head> 
+  <body>
+    <textarea placeholder="Write some JavaScript and press CTRL + ENTER..." class="ta"></textarea>
+
+    <div class="console-output-container" >
+    </div>
+
+    <script>
+      let lightIsOn = false;
+
+      const output = document.querySelector('.console-output-container')
+      const ta = document.querySelector(".ta");
+      ta.focus();
+
+      let prevLog = '';
+      let currentLog = '';
+      console.log = (log) => {
+        if (typeof log === 'object') {
+            
+        currentLog = Date.now() + "#!3" + JSON.stringify(log, null, 2);
+        } else {
+          
+        currentLog = Date.now() + "#!3" + log;
+        }
+      }
+
+      ta.addEventListener("keydown", function (e) {
+        if (e.key == "Tab") {
+          e.preventDefault();
+          let start = this.selectionStart;
+          const end = this.selectionEnd;
+          this.value =
+            this.value.substring(0, start) + "\t" + this.value.substring(end);
+          this.selectionStart = this.selectionEnd = start + 1;
+        }
+
+        if(e.key == 'Enter' && e.ctrlKey) {
+          // CTRL + ENTER pressed
+          runCode(ta.value)
+        }
+
+      });
+
+      function runCode(code) {
+        eval(code);
+
+        if (prevLog != currentLog) {
+          output.innerHTML += `
+          <p class="console-output-container__time">${new Date().toISOString()}</p>
+          <p class="console-output-container__log">${currentLog.split('#!3')[1]}</p>
+          `;
+
+          prevLog = currentLog;
+        }
+      }
+    </script>
 </html>
