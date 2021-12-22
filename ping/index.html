@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ping Test</title>
+
+    <style>
+      body {
+        max-width: 900px;
+        margin: auto;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      id="result-container"
+      style="
+        display: none;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        font-size: 30px;
+      "
+    >
+      Your Ping is <span id="medianPing"></span> (median of last 21 pings)
+    </section>
+
+    <section id="measurement-container">
+      Pings (<span id="currentPing">0</span>/21):
+      <ul id="pingList"></ul>
+    </section>
+
+    <script>
+      const pingList = document.getElementById("pingList");
+      const currentPingEl = document.getElementById("currentPing");
+      const medianPingEl = document.getElementById("medianPing");
+      const measurementContainerEl = document.getElementById(
+        "measurement-container"
+      );
+      const resultContainerEl = document.getElementById("result-container");
+
+      const pings = [];
+      const start = Date.now();
+
+      const pingInterval = setInterval(() => {
+        const start = Date.now();
+        fetch("https://jsonplaceholder.typicode.com/todos/1").then(() => {
+          const ping = Date.now() - start;
+          pings.push(ping);
+          const pingLi = document.createElement("li");
+          pingLi.textContent = ping;
+
+          pingList.appendChild(pingLi);
+
+          currentPingEl.innerText = pings.length;
+
+          if (pings.length === 21) {
+            clearInterval(pingInterval);
+            showResult();
+          }
+        });
+      }, 500);
+
+      function showResult() {
+        resultContainerEl.style.display = "block";
+        const medianPing = median(pings);
+        medianPingEl.innerText = medianPing;
+      }
+
+      function median(values) {
+        if (values.length === 0) throw new Error("No inputs");
+
+        values.sort(function (a, b) {
+          return a - b;
+        });
+
+        var half = Math.floor(values.length / 2);
+
+        if (values.length % 2) return values[half];
+
+        return (values[half - 1] + values[half]) / 2.0;
+      }
+    </script>
+  </body>
+</html>
