@@ -53,8 +53,8 @@
           navigator.geolocation.getCurrentPosition(
             (pos) => {
               const location = {
-                lat: 49.02018123338364,
-                lng: 12.066694097631459,
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude,
               };
 
               geocoder.geocode({ location }).then((res) => {
