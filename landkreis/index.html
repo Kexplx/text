@@ -58,8 +58,13 @@
               };
 
               geocoder.geocode({ location }).then((res) => {
-                const district = res.results[0].address_components[4].long_name;
-                const state = res.results[0].address_components[6].long_name;
+                const district = res.results[0].address_components.find((c) =>
+                  c.types.includes("administrative_area_level_3")
+                ).long_name;
+
+                const state = res.results[0].address_components.find((c) =>
+                  c.types.includes("administrative_area_level_1")
+                ).long_name;
 
                 showResult(district, state);
               });
