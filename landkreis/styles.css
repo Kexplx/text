@@ -1,0 +1,45 @@
+body * {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.container {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.district-subheader {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.district {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.error-msg {
+  color: #ff5745;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.hidden {
+  display: none;
+}
+
+#getDistrictBtn {
+  border: 0;
+  padding: 30px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border: 1px solid rgb(191, 191, 191);
+  border-radius: 5px;
+  transition: background-color 300ms ease;
+  cursor: pointer;
+}
+
+#getDistrictBtn:hover {
+  background-color: #e8e8e8;
+}

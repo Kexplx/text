@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Ermittelt den Landkreis in dem Sie sich gerade befinden."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%2280%22>🗺️</text></svg>"
+    />
+    <script src="js.js"></script>
+    <title>Wo bin ich?</title>
+  </head>
+  <body>
+    <div class="container">
+      <button onclick="getDistrict()" id="getDistrictBtn">
+        Landkreis bestimmen
+      </button>
+
+      <section class="success hidden">
+        <p class="district-subheader">Sie befinden sich im Landkreis:</p>
+        <p class="district"></p>
+      </section>
+
+      <section class="error hidden">
+        <p class="error-msg">
+          Diese Webseite hat keine Berechtigung um auf ihren Standort
+          zuzugreifen.
+        </p>
+      </section>
+    </div>
+
+    <script>
+      const getDistrictBtn = document.getElementById("getDistrictBtn");
+
+      const successContainer = document.querySelector(".success");
+      const districtElement = document.querySelector(".district");
+
+      const errorContainer = document.querySelector(".error");
+      const errorMsgElement = document.querySelector(".error-msg");
+
+      const geocoder = new google.maps.Geocoder();
+
+      function getDistrict() {
+        if (navigator.geolocation) {
+          // This will cause the browser to ask
+          // the user for permission to track their location.
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const location = {
+                lat: 49.02018123338364,
+                lng: 12.066694097631459,
+              };
+
+              geocoder.geocode({ location }).then((res) => {
+                const district = res.results[0].address_components[4].long_name;
+                const state = res.results[0].address_components[6].long_name;
+
+                showResult(district, state);
+              });
+            },
+            (err) => {
+              showError(
+                "Diese Webseite hat keine Berechtigung um auf ihren Standort zuzugreifen."
+              );
+            }
+          );
+        } else {
+          showError("Ihr Browser unterstützt keine Standort Funktionalität.");
+        }
+
+        function showResult(district, state) {
+          getDistrictBtn.classList.add("hidden");
+          successContainer.classList.remove("hidden");
+          districtElement.innerText = `${district}, ${state}`;
+        }
+
+        function showError(msg) {
+          getDistrictBtn.classList.add("hidden");
+
+          errorContainer.classList.remove("hidden");
+          errorMsgElement.innerText = msg;
+        }
+      }
+    </script>
+  </body>
+</html>
