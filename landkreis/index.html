@@ -52,12 +52,14 @@
           // the user for permission to track their location.
           navigator.geolocation.getCurrentPosition(
             (pos) => {
+              const yo = "48.159648, 11.561551".replace(" ", "");
               const location = {
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude,
+                lat: Number(yo.split(",")[0]),
+                lng: Number(yo.split(",")[1]),
               };
 
               geocoder.geocode({ location }).then((res) => {
+                console.log(res.results[0].address_components);
                 const district = res.results[0].address_components.find((c) =>
                   c.types.includes("administrative_area_level_3")
                 ).long_name;
