@@ -1,0 +1,44 @@
+:root * {
+  font-family: "Roboto", sans-serif;
+}
+
+#time {
+  margin-top: 20vh;
+  font-size: 90px;
+}
+
+.ta-center {
+  text-align: center;
+}
+
+.mr-1 {
+  margin-right: 10px;
+}
+
+button {
+  border: 0;
+  padding: 15px 25px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+button:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+button:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.btn-container {
+  display: grid;
+}
+
+.btn-container img {
+  width: 20px;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>25 Minutes</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%2280%22>⏲️</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body class="ta-center">
+    <div class="container">
+      <p id="time">25:00</p>
+
+      <!-- Actions -->
+      <section>
+        <button id="btnPlay" class="mr-1">
+          <div class="btn-container">
+            <img src="icons/play-solid.svg" />
+          </div>
+        </button>
+
+        <button disabled id="btnPause" class="mr-1">
+          <div class="btn-container">
+            <img src="icons/pause-solid.svg" />
+          </div>
+        </button>
+
+        <button id="btnReset">
+          <div class="btn-container">
+            <img src="icons/undo-solid.svg" />
+          </div>
+        </button>
+      </section>
+    </div>
+  </body>
+</html>
