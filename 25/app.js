@@ -28,7 +28,9 @@ resetButton.onclick = reset;
 
 const timerElement = document.getElementById("time");
 
-const TOTAL_SECONDS = 25 * 60;
+const TOTAL_MINUTES = getTotalMinutesFromUrl();
+setInitialMinutesInPage();
+const TOTAL_SECONDS = TOTAL_MINUTES * 60;
 let secondsLeft = TOTAL_SECONDS;
 
 function play() {
@@ -103,4 +105,19 @@ function hide(el) {
 
 function show(el) {
   el.style.display = "";
+}
+
+function getTotalMinutesFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const minutesQuery = params.get("m");
+
+  if (minutesQuery) {
+    return Number(minutesQuery);
+  } else {
+    return 25;
+  }
+}
+
+function setInitialMinutesInPage() {
+  timerElement.innerText = `${addPadding(TOTAL_MINUTES)}:00`;
 }
