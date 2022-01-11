@@ -1,13 +1,17 @@
+const intervalWorker = new Worker("interval-worker.js");
+
 document.addEventListener("keydown", (e) => {
   const isSpace = e.code === "Space";
 
   if (isSpace) {
+    const isPlaying = playButton.style.display == "none";
+
     if (secondsLeft === 0) {
       return;
-    } else if (playButton.disabled) {
+    } else if (isPlaying) {
       // We are playing, so we pause.
       pause();
-    } else if (pauseButton.disabled) {
+    } else {
       // We are paused, so we resume.
       play();
     }
@@ -27,46 +31,43 @@ const timerElement = document.getElementById("time");
 const TOTAL_SECONDS = 25 * 60;
 let secondsLeft = TOTAL_SECONDS;
 
-let interval;
-
 function play() {
   if (secondsLeft === TOTAL_SECONDS) {
     secondsLeft -= 1;
     updateTimer();
   }
 
-  interval = setInterval(() => {
+  startInterval(() => {
     secondsLeft -= 1;
     updateTimer();
 
     if (secondsLeft === 0) {
-      clearInterval(interval);
-      pauseButton.disabled = true;
+      stopInterval();
+      hide(pauseButton);
+      hide(playButton);
       new Audio("sounds/end.mp3").play();
     }
-  }, 1000);
+  });
 
-  pauseButton.disabled = false;
-  playButton.disabled = true;
+  hide(playButton);
+  show(pauseButton);
 }
 
 function pause() {
-  clearInterval(interval);
+  stopInterval();
 
-  pauseButton.disabled = true;
-  playButton.disabled = false;
+  hide(pauseButton);
+  show(playButton);
 }
 
 function reset() {
-  if (interval) {
-    clearInterval(interval);
-  }
+  stopInterval();
 
   secondsLeft = TOTAL_SECONDS;
   updateTimer();
 
-  pauseButton.disabled = true;
-  playButton.disabled = false;
+  hide(pauseButton);
+  show(playButton);
 }
 
 // Utils
@@ -84,4 +85,22 @@ function addPadding(val) {
   } else {
     return val;
   }
+}
+
+function startInterval(cb) {
+  intervalWorker.postMessage("start");
+
+  intervalWorker.onmessage = cb;
+}
+
+function stopInterval() {
+  intervalWorker.postMessage("stop");
+}
+
+function hide(el) {
+  el.style.display = "none";
+}
+
+function show(el) {
+  el.style.display = "";
 }
