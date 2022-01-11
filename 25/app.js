@@ -30,6 +30,11 @@ let secondsLeft = TOTAL_SECONDS;
 let interval;
 
 function play() {
+  if (secondsLeft === TOTAL_SECONDS) {
+    secondsLeft -= 1;
+    updateTimer();
+  }
+
   interval = setInterval(() => {
     secondsLeft -= 1;
     updateTimer();
