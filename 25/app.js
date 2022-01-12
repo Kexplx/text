@@ -1,4 +1,5 @@
 const intervalWorker = new Worker("interval-worker.js");
+const endSound = new Audio("sounds/end.mp3");
 
 document.addEventListener("keydown", (e) => {
   const isSpace = e.code === "Space";
@@ -47,7 +48,7 @@ function play() {
       stopInterval();
       hide(pauseButton);
       hide(playButton);
-      new Audio("sounds/end.mp3").play();
+      endSound.play();
     }
   });
 
