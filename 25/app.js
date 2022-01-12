@@ -124,4 +124,5 @@ function getTotalMinutesFromUrl() {
 
 function setInitialMinutesInPage() {
   timerElement.innerText = `${addPadding(TOTAL_MINUTES)}:00`;
+  document.title = `${TOTAL_MINUTES} Minutes`;
 }
