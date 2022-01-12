@@ -1,4 +1,7 @@
 const intervalWorker = new Worker("interval-worker.js");
+
+// It's important to load the audio file here while the tab is
+// because chrome blocks resource download from inactive tabs.
 const endSound = new Audio("sounds/end.mp3");
 
 document.addEventListener("keydown", (e) => {
