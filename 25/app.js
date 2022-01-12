@@ -1,10 +1,10 @@
 const intervalWorker = new Worker("interval-worker.js");
 
-// It's important to load the audio file here while the tab is
-// because chrome blocks resource download from inactive tabs.
+// It's necessary to load the audio file here while the tab is active
+// because chrome blocks resource downloads from inactive tabs.
 const endSound = new Audio("sounds/end.mp3");
 
-document.addEventListener("keydown", (e) => {
+document.onkeydown = (e) => {
   const isSpace = e.code === "Space";
 
   if (isSpace) {
@@ -20,7 +20,7 @@ document.addEventListener("keydown", (e) => {
       play();
     }
   }
-});
+};
 
 const playButton = document.getElementById("btnPlay");
 const pauseButton = document.getElementById("btnPause");
