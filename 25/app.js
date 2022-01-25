@@ -15,7 +15,7 @@ document.onkeydown = (e) => {
       pause();
     } else {
       // We are paused, so we resume.
-      playOrPause();
+      play();
     }
   }
 };
@@ -35,6 +35,7 @@ let secondsLeft = TOTAL_SECONDS;
 let isPlaying = false;
 
 function playOrPause() {
+  playPauseButton.blur();
   if (isPlaying) {
     pause();
   } else {
