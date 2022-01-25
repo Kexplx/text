@@ -22,11 +22,12 @@ button {
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
-  transition: background-color 0.5s ease;
+  transition: backgroundcolor 0.5s ease, transform 0.3s ease;
 }
 
 button:hover {
   background-color: rgb(245, 245, 245);
+  transform: scale(1.2);
 }
 
 button:disabled {

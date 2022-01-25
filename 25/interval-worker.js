@@ -8,7 +8,7 @@ let interval;
 onmessage = ({ data: action }) => {
   switch (action) {
     case "start":
-      interval = setInterval(() => postMessage(null), 1000);
+      interval = setInterval(() => postMessage(1), 1000);
       break;
     case "stop":
       clearInterval(interval);

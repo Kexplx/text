@@ -8,8 +8,6 @@ document.onkeydown = (e) => {
   const isSpace = e.code === "Space";
 
   if (isSpace) {
-    const isPlaying = playButton.style.display == "none";
-
     if (secondsLeft === 0) {
       return;
     } else if (isPlaying) {
@@ -17,17 +15,15 @@ document.onkeydown = (e) => {
       pause();
     } else {
       // We are paused, so we resume.
-      play();
+      playOrPause();
     }
   }
 };
 
-const playButton = document.getElementById("btnPlay");
-const pauseButton = document.getElementById("btnPause");
+const playPauseButton = document.getElementById("btnPlayPause");
 const resetButton = document.getElementById("btnReset");
 
-playButton.onclick = play;
-pauseButton.onclick = pause;
+playPauseButton.onclick = playOrPause;
 resetButton.onclick = reset;
 
 const timerElement = document.getElementById("time");
@@ -36,8 +32,18 @@ const TOTAL_MINUTES = getTotalMinutesFromUrl();
 setInitialMinutesInPage();
 const TOTAL_SECONDS = TOTAL_MINUTES * 60;
 let secondsLeft = TOTAL_SECONDS;
+let isPlaying = false;
+
+function playOrPause() {
+  if (isPlaying) {
+    pause();
+  } else {
+    play();
+  }
+}
 
 function play() {
+  isPlaying = true;
   if (secondsLeft === TOTAL_SECONDS) {
     secondsLeft -= 1;
     updateTimer();
@@ -49,21 +55,20 @@ function play() {
 
     if (secondsLeft === 0) {
       stopInterval();
-      hide(pauseButton);
-      hide(playButton);
+      togglePlayPauseIcon();
+
       endSound.play();
     }
   });
 
-  hide(playButton);
-  show(pauseButton);
+  togglePlayPauseIcon();
 }
 
 function pause() {
+  isPlaying = false;
   stopInterval();
 
-  hide(pauseButton);
-  show(playButton);
+  togglePlayPauseIcon();
 }
 
 function reset() {
@@ -72,8 +77,7 @@ function reset() {
   secondsLeft = TOTAL_SECONDS;
   updateTimer();
 
-  hide(pauseButton);
-  show(playButton);
+  togglePlayPauseIcon();
 }
 
 // Utils
@@ -99,16 +103,18 @@ function startInterval(cb) {
   intervalWorker.onmessage = cb;
 }
 
+function togglePlayPauseIcon() {
+  const imageElInButton = playPauseButton.children.item(0).children.item(0);
+  if (isPlaying) {
+    // We are playing so we show the "pause" icon.
+    imageElInButton.setAttribute("src", "icons/pause.svg");
+  } else {
+    imageElInButton.setAttribute("src", "icons/play.svg");
+  }
+}
+
 function stopInterval() {
   intervalWorker.postMessage("stop");
-}
-
-function hide(el) {
-  el.style.display = "none";
-}
-
-function show(el) {
-  el.style.display = "";
 }
 
 function getTotalMinutesFromUrl() {
