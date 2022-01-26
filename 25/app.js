@@ -56,7 +56,9 @@ function play() {
 
     if (secondsLeft === 0) {
       stopInterval();
-      togglePlayPauseIcon();
+
+      isPlaying = false;
+      playPauseButton.style.display = "none";
 
       endSound.play();
     }
@@ -78,6 +80,7 @@ function reset() {
   secondsLeft = TOTAL_SECONDS;
   updateTimer();
 
+  playPauseButton.style.display = "inline";
   togglePlayPauseIcon();
 }
 
