@@ -75,6 +75,7 @@ function pause() {
 }
 
 function reset() {
+  isPlaying = false;
   stopInterval();
 
   secondsLeft = TOTAL_SECONDS;
