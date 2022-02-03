@@ -16,12 +16,14 @@
     <style>
       body * {
         font-family: "Roboto", sans-serif;
+        overflow: hidden;
       }
       .container {
         max-width: 600px;
         padding: 10px;
         margin: auto;
         margin-top: 50px;
+        overflow: hidden;
       }
 
       p {
@@ -56,18 +58,28 @@
         transform: rotate(27deg);
         position: absolute;
         animation: 2s blendIn ease-out;
-        display: none;
-        margin-top: 130px;
+        margin-top: -115px;
         margin-left: 110px;
+      }
+
+      button {
+        font-size: 15px;
+        margin-top: 15px;
+        border: 0;
+        padding: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        font-weight: 500;
+        outline: none;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <img src="juli.png" />
-    </div>
+    <div class="container"></div>
 
     <script>
+      const audio = new Audio("singing.mp3");
       const containerEl = document.querySelector(".container");
       const img = document.querySelector("img");
 
@@ -85,10 +97,15 @@
         if (i == sentences.length + 1) {
           clearInterval(interval);
         } else {
-          printSentence(sentences[i]);
+          if (i === sentences.length) {
+            printImage();
+          } else {
+            printSentence(sentences[i]);
+          }
+
           i++;
         }
-      }, 1300);
+      }, 1);
 
       function printSentence(sentence) {
         const el = document.createElement("p");
@@ -98,15 +115,27 @@
           el.style.marginTop = "50px";
         }
 
-        if (i == sentences.length) {
-          img.style.display = "block";
-
-          setTimeout(() => {
-            img.style.animation = "1.5s rotate infinite alternate ease-in-out";
-          }, 3000);
-        }
-
         containerEl.appendChild(el);
+      }
+
+      function printImage() {
+        const imgEl = document.createElement("img");
+        imgEl.src = "juli.png";
+
+        const btnEl = document.createElement("button");
+        btnEl.textContent = "Click Me!";
+
+        btnEl.addEventListener("click", () => {
+          imgEl.style.animation = "1.5s rotate infinite alternate ease-in-out";
+
+          audio.play();
+          audio.onended = () => {
+            imgEl.style.animation = "";
+          };
+        });
+
+        containerEl.appendChild(imgEl);
+        containerEl.appendChild(btnEl);
       }
     </script>
   </body>
