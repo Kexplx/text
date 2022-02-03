@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juli's Page 🌤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body * {
+        font-family: "Roboto", sans-serif;
+      }
+      .container {
+        max-width: 600px;
+        padding: 10px;
+        margin: auto;
+        margin-top: 50px;
+      }
+
+      p {
+        font-size: 35px;
+        margin: 0;
+        padding: 0;
+        animation: 2s blendIn ease-out;
+      }
+
+      @keyframes blendIn {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      img {
+        width: 300px;
+        border-radius: 20px;
+        transform: rotate(27deg);
+        position: absolute;
+        animation: 2s blendIn ease-out;
+        display: none;
+        margin-top: 130px;
+        margin-left: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="6a8f319a-02c4-4956-951e-453932666e9b-removebg-preview.png" />
+    </div>
+
+    <script>
+      const containerEl = document.querySelector(".container");
+      const img = document.querySelector("img");
+
+      const sentences = [
+        "Morning",
+        "Bombi 🌤️,",
+        "Keep your head up.",
+        "You can do it.",
+        "Ciao.",
+      ];
+
+      let i = 0;
+
+      const interval = setInterval(() => {
+        if (i == sentences.length + 1) {
+          clearInterval(interval);
+        } else {
+          printSentence(sentences[i]);
+          i++;
+        }
+      }, 1000);
+
+      function printSentence(sentence) {
+        const el = document.createElement("p");
+        el.textContent = sentence;
+
+        if (i == 2) {
+          el.style.marginTop = "50px";
+        }
+
+        if (i == sentences.length) {
+          img.style.display = "block";
+        }
+
+        containerEl.appendChild(el);
+      }
+    </script>
+  </body>
+</html>
