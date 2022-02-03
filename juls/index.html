@@ -41,6 +41,15 @@
         }
       }
 
+      @keyframes rotate {
+        0% {
+          transform: rotate(27deg);
+        }
+        100% {
+          transform: rotate(-20deg);
+        }
+      }
+
       img {
         width: 300px;
         border-radius: 20px;
@@ -91,6 +100,10 @@
 
         if (i == sentences.length) {
           img.style.display = "block";
+
+          setTimeout(() => {
+            img.style.animation = "1.5s rotate infinite alternate ease-in-out";
+          }, 4000);
         }
 
         containerEl.appendChild(el);
