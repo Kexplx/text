@@ -72,6 +72,9 @@
         font-weight: 500;
         outline: none;
         cursor: pointer;
+        cursor: pointer;
+        background: #f1c40f;
+        border-radius: 10px;
       }
     </style>
   </head>
@@ -105,7 +108,7 @@
 
           i++;
         }
-      }, 1);
+      }, 1300);
 
       function printSentence(sentence) {
         const el = document.createElement("p");
@@ -123,7 +126,7 @@
         imgEl.src = "juli.png";
 
         const btnEl = document.createElement("button");
-        btnEl.textContent = "Click Me!";
+        btnEl.textContent = "Click Me 🔊";
 
         btnEl.addEventListener("click", () => {
           imgEl.style.animation = "1.5s rotate infinite alternate ease-in-out";
