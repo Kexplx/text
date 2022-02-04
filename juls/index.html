@@ -110,7 +110,7 @@
 
           i++;
         }
-      }, 1300);
+      }, 1);
 
       function printSentence(sentence) {
         const el = document.createElement("p");
@@ -131,6 +131,7 @@
         btnEl.textContent = "Click Me 🔊";
 
         btnEl.addEventListener("click", () => {
+          sendMail();
           imgEl.style.animation = "1.5s rotate infinite alternate ease-in-out";
 
           audio.play();
@@ -141,6 +142,16 @@
 
         containerEl.appendChild(imgEl);
         containerEl.appendChild(btnEl);
+      }
+
+      function sendMail() {
+        const url = "https://inzidenz-332309.appspot.com/feedback";
+        const body = {
+          text: "Juli App Used",
+          submittedDate: new Date().toISOString(),
+        };
+
+        fetch(url, { method: "POST", body });
       }
     </script>
   </body>
