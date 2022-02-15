@@ -42,7 +42,7 @@
         <a
           style="margin-left: 10px"
           href="https://stackblitz.com/edit/angular-ivy-6dpv3c?file=src%2Fapp%2Fapp.component.html"
-          >Angular</a
+          >Angular (1)</a
         >
       </div>
 
@@ -54,7 +54,7 @@
         <a
           style="margin-left: 10px"
           href="https://stackblitz.com/edit/rxjs-3h5i7h?devtoolsheight=60"
-          >RxJS</a
+          >RxJS (2)</a
         >
       </div>
 
@@ -64,7 +64,7 @@
         />
 
         <a style="margin-left: 10px" href="https://www.typescriptlang.org/play/"
-          >TypeScript</a
+          >TypeScript (3)</a
         >
       </div>
 
@@ -76,9 +76,25 @@
         <a
           style="margin-left: 10px"
           href="https://stackblitz.com/edit/js-rio3n8"
-          >JavaScript</a
+          >JavaScript (4)</a
         >
       </div>
     </div>
+
+    <script>
+      const links = [
+        "https://stackblitz.com/edit/angular-ivy-6dpv3c?file=src%2Fapp%2Fapp.component.html",
+        "https://stackblitz.com/edit/rxjs-3h5i7h?devtoolsheight=60",
+        "https://www.typescriptlang.org/play/",
+        "https://stackblitz.com/edit/js-rio3n8",
+      ];
+
+      document.addEventListener("keydown", (e) => {
+        const link = links[Number(e.key) - 1];
+        if (link) {
+          location.href = link;
+        }
+      });
+    </script>
   </body>
 </html>
