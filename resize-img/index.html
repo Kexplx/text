@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resize Image</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <p><strong>Upload image</strong></p>
+        <input
+          id="inputFile"
+          type="file"
+          accept="image/x-png,image/gif,image/jpeg"
+        />
+      </div>
+
+      <div class="mt-1">
+        <label>
+          Resize to (longest site in px):
+          <input
+            id="inputMaxSize"
+            style="width: 70px"
+            value="500"
+            type="number"
+          />
+        </label>
+      </div>
+
+      <div class="mt-2">
+        <button id="buttonResize" disabled>Resize now</button>
+      </div>
+
+      <div style="display: none" id="result"></div>
+    </div>
+
+    <script>
+      const inputFile = document.getElementById("inputFile");
+      const inputMaxSize = document.getElementById("inputMaxSize");
+      const buttonResize = document.getElementById("buttonResize");
+
+      let newWidth;
+      let newHeight;
+
+      let originalFileSize;
+      let originalFile;
+
+      inputFile.onchange = async () => {
+        originalFile = inputFile.files[0];
+        buttonResize.disabled = false;
+      };
+
+      buttonResize.onclick = async () => {
+        const resizedImgAsBase64 = await resize(originalFile, getMaxSize());
+        displayResult(resizedImgAsBase64);
+      };
+
+      function getMaxSize() {
+        return parseInt(inputMaxSize.value);
+      }
+
+      function displayResult(resizedImgAsBase64) {
+        const resultContainer = document.getElementById("result");
+        resultContainer.style.display = "block";
+
+        const oldSize = (originalFileSize / 1000).toFixed(2);
+        const newSize = (new Blob([resizedImgAsBase64]).size / 1000).toFixed(2);
+        const deacrese =
+          ((oldSize - newSize) / oldSize).toFixed(2) * 100 + " %";
+
+        const innerHtml = `
+        <hr class="mt-2" />
+        <p><strong>Success!</strong></p>
+        <p id="result-sizes">From <u>${oldSize} KB</u> to <u>${newSize} KB</u>, that's a <u>${deacrese} DECREASE.</u></p>
+        <p>Below is your resized image. Use your browser to download or click <a href="${resizedImgAsBase64}" download="${getNewFilename()}">here.</a></p>
+
+        <img src="${resizedImgAsBase64}" />
+        `;
+
+        resultContainer.innerHTML = innerHtml;
+      }
+
+      async function resize(file, maxSize = 300) {
+        return new Promise((res, rej) => {
+          const reader = new FileReader();
+
+          reader.onload = () => {
+            originalFileSize = reader.result.length;
+            const image = new Image();
+
+            image.onload = () => {
+              const canvas = document.createElement("canvas");
+
+              let width = image.width;
+              let height = image.height;
+
+              if (width > height) {
+                if (width > maxSize) {
+                  height *= maxSize / width;
+                  width = maxSize;
+                }
+              } else {
+                if (height > maxSize) {
+                  width *= maxSize / height;
+                  height = maxSize;
+                }
+              }
+              canvas.width = width;
+              canvas.height = height;
+
+              newHeight = height;
+              newWidth = width;
+
+              canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+              res(canvas.toDataURL(file.type));
+            };
+
+            image.src = reader.result;
+          };
+
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function getNewFilename() {
+        const pattern = /(.*)(\.jpg)/;
+
+        const [, name, extension] = pattern.exec(originalFile.name);
+
+        return `${name}_${newWidth}x${newHeight}${extension}`;
+      }
+    </script>
+  </body>
+</html>

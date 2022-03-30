@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juli's Page 🌤️</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%2280%22>🌤️</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body * {
+        font-family: "Roboto", sans-serif;
+        overflow: hidden;
+      }
+      .container {
+        max-width: 600px;
+        padding: 10px;
+        margin: auto;
+        margin-top: 50px;
+        overflow: hidden;
+      }
+
+      p {
+        font-size: 35px;
+        margin: 0;
+        padding: 0;
+        animation: 2s blendIn ease-in-out;
+      }
+
+      @keyframes blendIn {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(27deg);
+        }
+        100% {
+          transform: rotate(-20deg);
+        }
+      }
+
+      img {
+        width: 270px;
+        border-radius: 20px;
+        transform: rotate(27deg);
+        position: absolute;
+        animation: 2s blendIn ease-in-out;
+        margin-top: -115px;
+        margin-left: 110px;
+        z-index: 500;
+      }
+
+      button {
+        font-size: 15px;
+        margin-top: 15px;
+        border: 0;
+        padding: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        font-weight: 500;
+        outline: none;
+        cursor: pointer;
+        cursor: pointer;
+        background: #f1c40f;
+        animation: 2s blendIn ease-in-out;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+
+    <script>
+      const audio = new Audio("singing.mp3");
+      const containerEl = document.querySelector(".container");
+      const img = document.querySelector("img");
+
+      const sentences = [
+        "Good Morning",
+        "Bombi 🌤️,",
+        "Keep your head up.",
+        "You can do it.",
+        "Cya later.",
+      ];
+
+      let i = 0;
+
+      const interval = setInterval(() => {
+        if (i == sentences.length + 1) {
+          clearInterval(interval);
+        } else {
+          if (i === sentences.length) {
+            printImage();
+          } else {
+            printSentence(sentences[i]);
+          }
+
+          i++;
+        }
+      }, 1300);
+
+      function printSentence(sentence) {
+        const el = document.createElement("p");
+        el.textContent = sentence;
+
+        if (i == 2) {
+          el.style.marginTop = "50px";
+        }
+
+        containerEl.appendChild(el);
+      }
+
+      function printImage() {
+        const imgEl = document.createElement("img");
+        imgEl.src = "juli.png";
+
+        const btnEl = document.createElement("button");
+        btnEl.textContent = "Click Me 🔊";
+
+        btnEl.addEventListener("click", () => {
+          sendMail();
+          imgEl.style.animation = "1.5s rotate infinite alternate ease-in-out";
+
+          audio.play();
+          audio.onended = () => {
+            imgEl.style.animation = "";
+          };
+        });
+
+        containerEl.appendChild(imgEl);
+        containerEl.appendChild(btnEl);
+      }
+
+      function sendMail() {
+        const url = "https://inzidenz-332309.appspot.com/feedback";
+        const body = {
+          text: "Juli App Used",
+          submittedDate: new Date().toISOString(),
+        };
+
+        fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+      }
+    </script>
+  </body>
+</html>
