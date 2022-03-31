@@ -1,0 +1,81 @@
+{
+  "configVersion": 1,
+  "timestamp": 1648692534656,
+  "index": "https://kexplx.github.io/apps/sober/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://kexplx.github.io/apps/sober/favicon.ico",
+        "https://kexplx.github.io/apps/sober/index.html",
+        "https://kexplx.github.io/apps/sober/main.32db94f87ac68fa5.js",
+        "https://kexplx.github.io/apps/sober/manifest.webmanifest",
+        "https://kexplx.github.io/apps/sober/polyfills.2f386718df358b6c.js",
+        "https://kexplx.github.io/apps/sober/runtime.0500f216b901e1d6.js",
+        "https://kexplx.github.io/apps/sober/styles.c73dde371ecde79e.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-128x128.png",
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-144x144.png",
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-152x152.png",
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-192x192.png",
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-384x384.png",
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-512x512.png",
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-72x72.png",
+        "https://kexplx.github.io/apps/sober/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "https://kexplx.github.io/apps/sober/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "https://kexplx.github.io/apps/sober/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "https://kexplx.github.io/apps/sober/index.html": "8ba1d5b8244a1f2895d10b23f73a9305e642b183",
+    "https://kexplx.github.io/apps/sober/main.32db94f87ac68fa5.js": "0d5d7e4797458ebffc2f89b095a5053716dec992",
+    "https://kexplx.github.io/apps/sober/manifest.webmanifest": "ac713b68965a15cfb3ba890d6808cceff078228e",
+    "https://kexplx.github.io/apps/sober/polyfills.2f386718df358b6c.js": "da25394e28304bc0e503d18b31c7b96c52530c0a",
+    "https://kexplx.github.io/apps/sober/runtime.0500f216b901e1d6.js": "d1bf45c327f38ec9b948f5e0ddd5863317d0c81f",
+    "https://kexplx.github.io/apps/sober/styles.c73dde371ecde79e.css": "61af9e9ebbffd26dc3e916c64347743a267e7678"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
