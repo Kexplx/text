@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Kcal: <span id="kcalCount">0</span></h1>
+      <section class="mt-1">
+        <div>
+          <input id="cb1" type="checkbox" />
+          <label for="cb1"> 8:00 Uhr - Aufstehen </label>
+        </div>
+        <div class="mt-1">
+          <input onclick="add(460)" id="cb2" type="checkbox" />
+          <label for="cb2"> 8:10 Shake (400g) + 1 Apfel </label>
+        </div>
+        <div class="mt-1">
+          <input onclick="add(390)" id="cb3" type="checkbox" />
+          <label for="cb3">10:00 Shake</label>
+        </div>
+        <div class="mt-1">
+          <input onclick="add(540)" id="cb4" type="checkbox" />
+          <label for="cb4"> 12:00 Reis + Fanta </label>
+        </div>
+        <div class="mt-1">
+          <input onclick="add(390)" id="cb5" type="checkbox" />
+          <label for="cb5"> 14:00 Shake </label>
+        </div>
+        <div class="mt-1">
+          <input id="cb6" onclick="add(610)" type="checkbox" />
+          <label for="cb6"> 17:00 Reis + 1 Apfel + Fanta </label>
+        </div>
+        <div class="mt-1">
+          <input onclick="add(390)" id="cb7" type="checkbox" />
+          <label for="cb7"> 20:00 Shake </label>
+        </div>
+        <div class="mt-1">
+          <input onclick="add(390)" id="cb8" type="checkbox" />
+          <label for="cb8"> 22:00 Shake </label>
+        </div>
+      </section>
+
+      <section class="mt-1">
+        <button onclick="reset()">Reset</button>
+      </section>
+    </div>
+  </body>
+</html>
