@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .container {
+        margin-top: 100px;
+        text-align: center;
+      }
+
+      button {
+        margin-top: 30px;
+        padding: 15px 30px;
+        cursor: pointer;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 50px;
+        color: rgb(50, 50, 50);
+      }
+
+      p {
+        font-size: 1.4rem;
+      }
+
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="error" id="error"></p>
+
+      <p><strong>Latitude (Lat):</strong> <span id="lat">?</span></p>
+      <p><strong>Longitude (Lon):</strong> <span id="lon">?</span></p>
+
+      <button id="btnUpdate">Get Location 🌍</button>
+    </div>
+
+    <script>
+      const btnUpdate = document.getElementById("btnUpdate");
+      const errorEl = document.getElementById("error");
+
+      const latEl = document.getElementById("lat");
+      const lonEl = document.getElementById("lon");
+
+      btnUpdate.onclick = loadCoordinates;
+
+      function loadCoordinates() {
+        if (!navigator.geolocation) {
+          errorEl.innerText = `Your browser doesn't support Geolocation`;
+          return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+
+            latEl.innerText = latitude;
+            lonEl.innerText = longitude;
+          },
+          (err) => {
+            errorEl.innerText =
+              "Permission to get your location was not permitted.";
+          }
+        );
+      }
+    </script>
+  </body>
+</html>
