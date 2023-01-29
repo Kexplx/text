@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1675011881156,
+  "timestamp": 1675012488843,
   "index": "https://kexplx.github.io/apps/currencies/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "https://kexplx.github.io/apps/currencies/favicon.ico",
         "https://kexplx.github.io/apps/currencies/index.html",
-        "https://kexplx.github.io/apps/currencies/main.f007bce158b35983.js",
+        "https://kexplx.github.io/apps/currencies/main.6705eda1dd7ddbf3.js",
         "https://kexplx.github.io/apps/currencies/manifest.webmanifest",
         "https://kexplx.github.io/apps/currencies/polyfills.600f9af21c76f1bc.js",
         "https://kexplx.github.io/apps/currencies/runtime.463ef3782f08c6bc.js",
@@ -58,8 +58,8 @@
     "https://kexplx.github.io/apps/currencies/assets/img/Flag_of_Thailand.svg": "271c0de39c27dee3efd2d49344e235ab5bf1eace",
     "https://kexplx.github.io/apps/currencies/assets/img/Flag_of_the_United_States.svg": "b3054f4dbd6e5353901537c770ff24360656a8b5",
     "https://kexplx.github.io/apps/currencies/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://kexplx.github.io/apps/currencies/index.html": "77ce1777e8046e1bd5bf266b39fd24942bfe46c8",
-    "https://kexplx.github.io/apps/currencies/main.f007bce158b35983.js": "66c8584640b2c9511e49f58051f0558611ba48d4",
+    "https://kexplx.github.io/apps/currencies/index.html": "4002c8809bd6b94f0557c490a569981c8982902f",
+    "https://kexplx.github.io/apps/currencies/main.6705eda1dd7ddbf3.js": "81184d8c66ef30aad8908e45778fff60ec494bf6",
     "https://kexplx.github.io/apps/currencies/manifest.webmanifest": "3509ff18cf6bdc7c2212da67b3cb2f60d12eb929",
     "https://kexplx.github.io/apps/currencies/polyfills.600f9af21c76f1bc.js": "3e7d2bd0700dde04307be3d28a45acfc9bbaa6d4",
     "https://kexplx.github.io/apps/currencies/runtime.463ef3782f08c6bc.js": "3c4f2f0d79a70e6c33cf5b22cf4d8ebddd24fafa",
